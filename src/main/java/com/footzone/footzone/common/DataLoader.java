@@ -60,104 +60,104 @@ public class DataLoader implements CommandLineRunner {
         if (initialMode.equals("always")) {
 
 
-            Role admin = roleRepository.save(new Role(
-                    AppConstants.ADMIN,
-                    "admin"
-            ));
-            Role user = roleRepository.save(new Role(
-                    AppConstants.USER,
-                    "User"
-            ));
-            Role stadiumHolder = roleRepository.save(new Role(
-                    AppConstants.STADIUM_HOLDER,
-                    "Stadium Holder"
-            ));
-
-            Role superAdmin = roleRepository.save(new Role(
-                    AppConstants.SUPER_ADMIN,
-                    "System Holder"
-            ));
-
-//          Saving default attachment
-
-            userRepository.save(new User(
-                    "SuperAdmin",
-                    "Super admin",
-                    passwordEncoder.encode("admin123"),
-                    new HashSet<>(
-                            Arrays.asList(
-                                    superAdmin,
-                                    admin,
-                                    stadiumHolder,
-                                    user
-                            )
-                    ),
-                    true,
-                    new Attachment(
-                            "default-profile-pic.jpg",
-                            241,
-                            "jpg",
-                            "default-profile-pic.jpg"
-                    )
-            ));
-            userRepository.save(new User(
-                    "StadiumHolder",
-                    "stadium",
-                    passwordEncoder.encode("stadium123"),
-                    new HashSet<>(
-                            Arrays.asList(
-                                    stadiumHolder,
-                                    user
-                            )
-                    ),
-                    true,
-                    new Attachment(
-                            "default-profile-pic.jpg",
-                            241,
-                            "jpg",
-                            "default-profile-pic.jpg"
-                    )
-            ));
-
-            userRepository.save(new User(
-                    "Admin",
-                    "99999999",
-                    passwordEncoder.encode("admin123"),
-                    new HashSet<>(
-                            Arrays.asList(
-                                    admin,
-                                    stadiumHolder,
-                                    user
-                            )
-                    ),
-                    true,
-                    new Attachment(
-                            "default-profile-pic.jpg",
-                            241,
-                            "jpg",
-                            "default-profile-pic.jpg"
-                    )
-            ));
-
-            userRepository.save(new User(
-                    "User",
-                    "+998993885322",
-                    passwordEncoder.encode("user123"),
-                    new HashSet<>(
-                            Collections.singletonList(
-                                    user
-                            )
-                    ),
-                    true,
-                    new Attachment(
-                            "default-profile-pic.jpg",
-                            241,
-                            "jpg",
-                            "default-profile-pic.jpg"
-                    )
-            ));
-
-            createSessionsAndStadiums();
+//            Role admin = roleRepository.save(new Role(
+//                    AppConstants.ADMIN,
+//                    "admin"
+//            ));
+//            Role user = roleRepository.save(new Role(
+//                    AppConstants.USER,
+//                    "User"
+//            ));
+//            Role stadiumHolder = roleRepository.save(new Role(
+//                    AppConstants.STADIUM_HOLDER,
+//                    "Stadium Holder"
+//            ));
+//
+//            Role superAdmin = roleRepository.save(new Role(
+//                    AppConstants.SUPER_ADMIN,
+//                    "System Holder"
+//            ));
+//
+////          Saving default attachment
+//
+//            userRepository.save(new User(
+//                    "SuperAdmin",
+//                    "Super admin",
+//                    passwordEncoder.encode("admin123"),
+//                    new HashSet<>(
+//                            Arrays.asList(
+//                                    superAdmin,
+//                                    admin,
+//                                    stadiumHolder,
+//                                    user
+//                            )
+//                    ),
+//                    true,
+//                    new Attachment(
+//                            "default-profile-pic.jpg",
+//                            241,
+//                            "jpg",
+//                            "default-profile-pic.jpg"
+//                    )
+//            ));
+//            userRepository.save(new User(
+//                    "StadiumHolder",
+//                    "stadium",
+//                    passwordEncoder.encode("stadium123"),
+//                    new HashSet<>(
+//                            Arrays.asList(
+//                                    stadiumHolder,
+//                                    user
+//                            )
+//                    ),
+//                    true,
+//                    new Attachment(
+//                            "default-profile-pic.jpg",
+//                            241,
+//                            "jpg",
+//                            "default-profile-pic.jpg"
+//                    )
+//            ));
+//
+//            userRepository.save(new User(
+//                    "Admin",
+//                    "99999999",
+//                    passwordEncoder.encode("admin123"),
+//                    new HashSet<>(
+//                            Arrays.asList(
+//                                    admin,
+//                                    stadiumHolder,
+//                                    user
+//                            )
+//                    ),
+//                    true,
+//                    new Attachment(
+//                            "default-profile-pic.jpg",
+//                            241,
+//                            "jpg",
+//                            "default-profile-pic.jpg"
+//                    )
+//            ));
+//
+//            userRepository.save(new User(
+//                    "User",
+//                    "+998993885322",
+//                    passwordEncoder.encode("user123"),
+//                    new HashSet<>(
+//                            Collections.singletonList(
+//                                    user
+//                            )
+//                    ),
+//                    true,
+//                    new Attachment(
+//                            "default-profile-pic.jpg",
+//                            241,
+//                            "jpg",
+//                            "default-profile-pic.jpg"
+//                    )
+//            ));
+//
+//            createSessionsAndStadiums();
             roleRepository.createFunction();
         }
     }
