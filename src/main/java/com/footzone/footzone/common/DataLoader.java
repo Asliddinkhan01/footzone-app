@@ -60,23 +60,23 @@ public class DataLoader implements CommandLineRunner {
         if (initialMode.equals("always")) {
 
 
-//            Role admin = roleRepository.save(new Role(
-//                    AppConstants.ADMIN,
-//                    "admin"
-//            ));
-//            Role user = roleRepository.save(new Role(
-//                    AppConstants.USER,
-//                    "User"
-//            ));
-//            Role stadiumHolder = roleRepository.save(new Role(
-//                    AppConstants.STADIUM_HOLDER,
-//                    "Stadium Holder"
-//            ));
-//
-//            Role superAdmin = roleRepository.save(new Role(
-//                    AppConstants.SUPER_ADMIN,
-//                    "System Holder"
-//            ));
+            Role admin = roleRepository.save(new Role(
+                    AppConstants.ADMIN,
+                    "admin"
+            ));
+            Role user = roleRepository.save(new Role(
+                    AppConstants.USER,
+                    "User"
+            ));
+            Role stadiumHolder = roleRepository.save(new Role(
+                    AppConstants.STADIUM_HOLDER,
+                    "Stadium Holder"
+            ));
+
+            Role superAdmin = roleRepository.save(new Role(
+                    AppConstants.SUPER_ADMIN,
+                    "System Holder"
+            ));
 //
 ////          Saving default attachment
 //
