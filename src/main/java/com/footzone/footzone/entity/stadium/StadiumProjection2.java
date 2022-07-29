@@ -2,7 +2,6 @@ package com.footzone.footzone.entity.stadium;
 //Asliddin Kenjaev, created: Jun, 11 2022 7:55 AM
 
 import com.footzone.footzone.entity.attachment.AttachmentProjection;
-import com.footzone.footzone.entity.comment.CommentProjection;
 import com.footzone.footzone.entity.workingDay.WorkingDayProjection2;
 import org.springframework.beans.factory.annotation.Value;
 

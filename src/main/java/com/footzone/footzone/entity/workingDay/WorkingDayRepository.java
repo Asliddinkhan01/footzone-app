@@ -12,7 +12,9 @@ import java.util.UUID;
 
 public interface WorkingDayRepository extends JpaRepository<WorkingDay, UUID> {
     boolean existsByDayNameAndStartTimeAndEndTime(WeekDay dayName, Time startTime, Time endTime);
+
     Optional<WorkingDay> findByDayNameAndStartTimeAndEndTime(WeekDay dayName, LocalTime startTime, LocalTime endTime);
+
     Optional<WorkingDay> findByDayNameAndStartTimeIdAndEndTimeId(WeekDay dayName, UUID startTime_id, UUID endTime_id);
 
     @Query(nativeQuery = true,
@@ -24,6 +26,7 @@ public interface WorkingDayRepository extends JpaRepository<WorkingDay, UUID> {
                     "         join working_days wd on swd.working_day_id = wd.id\n" +
                     "         join times t1 on wd.start_time_id = t1.id\n" +
                     "         join times t2 on wd.end_time_id = t2.id\n" +
-                    "where s.id = :stadiumId")
+                    "where s.id = :stadiumId\n" +
+                    "and s.is_deleted = false")
     List<WorkingDayProjection2> findWorkingDaysByStadiumId(UUID stadiumId);
 }

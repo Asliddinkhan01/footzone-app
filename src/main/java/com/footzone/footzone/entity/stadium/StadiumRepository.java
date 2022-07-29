@@ -118,6 +118,7 @@ public interface StadiumRepository extends JpaRepository<Stadium, UUID> {
                     "from stadiums s\n" +
                     "         join sessions s2 on s.id = s2.stadium_id\n" +
                     "where (s2.status = 'PLAYED' or s2.status = 'NOT_PLAYED')\n" +
-                    "  and s2.created_by_id = :createdBy_id")
+                    "  and s2.created_by_id = :createdBy_id\n" +
+                    "    and s.is_deleted = false")
     List<StadiumProjection> getPlayedStadiums(UUID createdBy_id);
 }

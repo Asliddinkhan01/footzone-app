@@ -94,14 +94,17 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
                     "         join times t1 on s.start_time_id = t1.id\n" +
                     "         join times t2 on s.end_time_id = t2.id\n" +
                     "where (status = 'PLAYED' or status = 'NOT_PLAYED')\n" +
-                    "  and s.created_by_id = :createdBy_id")
+                    "  and s.created_by_id = :createdBy_id\n" +
+                    "  and s2.is_deleted = false")
     List<SessionProjection> findPlayedNotPlayedByCreatedById(UUID createdBy_id);
 
     @Query(value = "select s.*\n" +
             "    from sessions s\n" +
+            "         join stadiums s2 on s.stadium_id = s2.id\n" +
             "    where start_date_id =:startDateId \n" +
             "    and stadium_id =:stadiumId \n" +
-            "    and s.status in ('ACCEPTED', 'PENDING')", nativeQuery = true)
+            "    and s.status in ('ACCEPTED', 'PENDING')\n" +
+            "    and s2.is_deleted = false", nativeQuery = true)
     List<Session> getSessionsForSpecificDay(UUID startDateId, UUID stadiumId);
 
     @Query(nativeQuery = true,
@@ -121,8 +124,9 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
                     "         join times t1 on s.start_time_id = t1.id\n" +
                     "         join times t2 on s.end_time_id = t2.id\n" +
                     "where (status = 'ACCEPTED' or status = 'PENDING')\n" +
-                    "  and d.local_date >= now()\n" +
-                    "  and s.created_by_id = :user_id")
+                    "  and (d.local_date + t1.time) >= now()\n" +
+                    "  and s.created_by_id = :user_id\n" +
+                    "    and st.is_deleted = false")
     List<SessionProjection> getSessionsOfStadiumsPlayingSoon(UUID user_id);
 
     @Query(nativeQuery = true,
@@ -134,8 +138,9 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
                     "         join times t2 on s2.end_time_id = t2.id\n" +
                     "where s2.user_id = :userId\n" +
                     "  and (status = 'ACCEPTED' or status = 'DECLINED')\n" +
-                    "  and d.local_date >= now()\n" +
-                    "  and t1.time > localtime + '05:00:00'")
+                    "  and (d.local_date + t1.time) >= now()\n" +
+                    "  and t1.time > localtime + '05:00:00'\n" +
+                    "    and s.is_deleted = false")
     int hasNotificationForUser(UUID userId);
 
     @Query(nativeQuery = true,
@@ -143,7 +148,8 @@ public interface SessionRepository extends JpaRepository<Session, UUID> {
                     "from sessions s\n" +
                     "         join stadiums s2 on s.stadium_id = s2.id\n" +
                     "where s2.owner_id = :ownerId\n" +
-                    "  and s.status = 'PENDING'")
+                    "  and s.status = 'PENDING'\n" +
+                    "    and s2.is_deleted = false")
     int hasNotificationForAdmin(UUID ownerId);
 
     @Query(nativeQuery = true,

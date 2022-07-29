@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.footzone.footzone.util.encryption.Symmetric.*;
+import static com.footzone.footzone.util.encryption.Symmetric.decrypt;
+import static com.footzone.footzone.util.encryption.Symmetric.encrypt;
 
 @Service
 @RequiredArgsConstructor

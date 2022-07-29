@@ -1,7 +1,6 @@
 package com.footzone.footzone.entity.comment;
 
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 public interface CommentProjection {

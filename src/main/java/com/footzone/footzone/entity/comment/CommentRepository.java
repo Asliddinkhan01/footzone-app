@@ -23,7 +23,8 @@ public interface CommentRepository extends JpaRepository<Comment, UUID> {
                     "         join stadiums s on s.id = c.stadium_id\n" +
                     "         join users u on c.created_by_id = u.id\n" +
                     "         join attachments a on u.photo_id = a.id\n" +
-                    "where s.id = :stadiumId")
+                    "where s.id = :stadiumId\n" +
+                    "and s.is_deleted = false")
     List<CommentProjection> findAllCommentsByPage(UUID stadiumId);
 
 
